@@ -1,8 +1,27 @@
+<ng2-slim-loading-bar color="blue"></ng2-slim-loading-bar>
+
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }}!
   </h1>
 </div>
+
+<nav class="navbar navbar-expand-sm bg-light">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a routerLink="admin" class="nav-link" routerLinkActive="active">
+          Admin
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="quotes" class="nav-link" routerLinkActive="active">
+          Quotes
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <router-outlet></router-outlet>

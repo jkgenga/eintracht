@@ -23,15 +23,14 @@ export class QuotesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   constructor(public bldataService: OpenLigaDbService) {
     // this.blafasel = new String('blafasel');
     console.log('QuotesComponent constructed ');
   }
 
   ngOnInit() {
-    console.log('request season 2018');
-     
+    console.log('load season 2018');
+
     merge(this.paginator.page)
     .pipe(
       startWith({}),

@@ -32,7 +32,7 @@ export class OpenLigaDbService {
   public fetchSeason(season: number): Observable<Season> {
     let result: Season;
 
-    let endpoint = this.actionUrl + 'getmatchdata/' + this.league + '/' + season;
+    const endpoint = this.actionUrl + 'getmatchdata/' + this.league + '/' + season;
     console.log('calling: ' + endpoint);
     return this.http.get(endpoint)
     .pipe(
@@ -40,13 +40,13 @@ export class OpenLigaDbService {
       tap(data => console.log('tap: ' + data))
     );
   }
-  
+
  // Spiele des 8. Spieltages der ersten Bundesliga 2016/2017:
   // https://www.openligadb.de/api/getmatchdata/bl1/2016/8
   public fetchMatchDay(season: number, matchDay: number): Observable<Match[]> {
     let result: Match[];
 
-    let endpoint = this.actionUrl + 'getmatchdata/' + this.league + '/' + season + '/' + matchDay;
+    const endpoint = this.actionUrl + 'getmatchdata/' + this.league + '/' + season + '/' + matchDay;
     console.log('calling: ' + endpoint);
     return this.http.get(endpoint)
     .pipe(
@@ -54,13 +54,13 @@ export class OpenLigaDbService {
       tap(data => console.log('tap: ' + data))
     );
   }
-  
+
  // Spiele des 8. Spieltages der ersten Bundesliga 2016/2017:
   // https://www.openligadb.de/api/getmatchdata/bl1/2016/8
   public fetchMatchDays(season: number): Observable<Match[]> {
     let result: Match[];
 
-    let endpoint = this.actionUrl + 'getmatchdata/' + this.league + '/' + season;
+    const endpoint = this.actionUrl + 'getmatchdata/' + this.league + '/' + season;
     console.log('calling: ' + endpoint);
     return this.http.get(endpoint)
     .pipe(
@@ -68,12 +68,12 @@ export class OpenLigaDbService {
       tap(data => console.log('tap: ' + data))
     );
   }
-  
+
   private mapSeason(matchDayData): Season {
     // 'title': this.sanitizer.bypassSecurityTrustHtml(apiDataSinglePost.title),
     // 'content': this.sanitizer.bypassSecurityTrustHtml(apiDataSinglePost.content)
     console.log('matchDayData: ' + matchDayData);
-    let season: Season = new Season();
+    const season: Season = new Season();
     for (let i = 0; i < matchDayData.length; i++) {
       season.matches.push(this.extractMatchData(matchDayData[i]));
      }
@@ -84,7 +84,7 @@ export class OpenLigaDbService {
     // 'title': this.sanitizer.bypassSecurityTrustHtml(apiDataSinglePost.title),
     // 'content': this.sanitizer.bypassSecurityTrustHtml(apiDataSinglePost.content)
     console.log('matchDayData: ' + matchDayData);
-    let matchDay: Match[] = [];
+    const matchDay: Match[] = [];
     for (let i = 0; i < matchDayData.length; i++) {
       matchDay.push(this.extractMatchData(matchDayData[i]));
      }
@@ -92,9 +92,9 @@ export class OpenLigaDbService {
   }
 
   private extractMatchData(matchData): Match {
-    let match: Match = new Match();
-    let home: Team = new Team();
-    let away: Team = new Team();
+    const match: Match = new Match();
+    const home: Team = new Team();
+    const away: Team = new Team();
     match.home = home;
     match.away = away;
     match.matchDay = matchData.Group.GroupOrderID;
@@ -103,8 +103,8 @@ export class OpenLigaDbService {
     home.name = matchData.Team1.TeamName;
     away.name = matchData.Team2.TeamName;
     if (matchData.MatchResults.length > 1) {
-      for (let i = 0; i < 2; i++){
-        if (matchData.MatchResults[i].ResultTypeID == 2) {
+      for (let i = 0; i < 2; i++) {
+        if (matchData.MatchResults[i].ResultTypeID === 2) {
           match.goalsHome = matchData.MatchResults[i].PointsTeam1;
           match.goalsAway = matchData.MatchResults[i].PointsTeam2;
         }
