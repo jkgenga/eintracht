@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { QuotesComponent } from './quotes/quotes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin/admin.component';
+import { SeasonService } from './season.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { AdminComponent } from './admin/admin.component';
     MatPaginatorModule,
     SlimLoadingBarModule
   ],
-  providers: [],
+  providers: [ SeasonService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

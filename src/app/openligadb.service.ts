@@ -55,7 +55,7 @@ export class OpenLigaDbService {
     );
   }
 
- // Spiele des 8. Spieltages der ersten Bundesliga 2016/2017:
+  // Spiele des 8. Spieltages der ersten Bundesliga 2016/2017:
   // https://www.openligadb.de/api/getmatchdata/bl1/2016/8
   public fetchMatchDays(season: number): Observable<Match[]> {
     let result: Match[];

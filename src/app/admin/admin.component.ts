@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OpenLigaDbService } from '../openligadb.service';
-import { Match } from '../types/match';
+import { SeasonService} from '../season.service';
+import { Season } from '../types/season';
+import { fromEventPattern } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -9,17 +11,19 @@ import { Match } from '../types/match';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(public bldataService: OpenLigaDbService) { }
+  constructor(public bldataService: OpenLigaDbService, public seasonService: SeasonService) { }
 
   ngOnInit() {
     console.log('request season 2018');
 
-    let matchDays: Match[];
+    let season: Season;
 
-    this.bldataService.fetchMatchDays(2018)
+    this.bldataService.fetchSeason(2018)
     .subscribe(data => {
       console.log('here: ' + data);
-      matchDays = data;
+      season = data;
      });
+
+     this.seasonService.addSeason(season);
   }
 }

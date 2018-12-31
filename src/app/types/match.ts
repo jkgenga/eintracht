@@ -1,5 +1,5 @@
 import { SafeValue } from '@angular/platform-browser';
-import { Team } from "./team";
+import { Team } from './team';
 
 export class Match {
   'id': SafeValue;

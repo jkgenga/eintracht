@@ -1,9 +1,7 @@
 import { SafeHtml } from '@angular/platform-browser';
-import {  Match } from "./match";
-import { MatchDay } from './bltypes';
+import {  Match } from './match';
 
 export class Season {
-  'id': SafeHtml;
   'year': SafeHtml;
   'matches': Match[] = [];
 }
