@@ -22,8 +22,11 @@ export class AdminComponent implements OnInit {
     .subscribe(data => {
       console.log('here: ' + data);
       season = data;
-     });
+      console.log('season: ' + JSON.stringify(season));
 
-     this.seasonService.addSeason(season);
+      this.seasonService.addSeason(season);
+      });
+
+
   }
 }

@@ -36,7 +36,7 @@ export class OpenLigaDbService {
     console.log('calling: ' + endpoint);
     return this.http.get(endpoint)
     .pipe(
-      map(data => result = this.mapSeason(data)),
+      map(data => result = this.mapSeason(season, data)),
       tap(data => console.log('tap: ' + data))
     );
   }
@@ -69,15 +69,15 @@ export class OpenLigaDbService {
     );
   }
 
-  private mapSeason(matchDayData): Season {
+  private mapSeason(year: Number, matchDayData): Season {
     // 'title': this.sanitizer.bypassSecurityTrustHtml(apiDataSinglePost.title),
     // 'content': this.sanitizer.bypassSecurityTrustHtml(apiDataSinglePost.content)
-    console.log('matchDayData: ' + matchDayData);
     const season: Season = new Season();
+    season.year = year;
     for (let i = 0; i < matchDayData.length; i++) {
       season.matches.push(this.extractMatchData(matchDayData[i]));
      }
-   return season;
+     return season;
   }
 
   private mapMatchDay(matchDayData): Match[] {
